@@ -109,7 +109,7 @@ class IrisModel:
             self.LabelEncoder = data_args['LabelEncoder']
 
             # get unbiased predictions on training data
-            y_pred, unbiased_prediction_args = self.get_unbiased_predictions_on_training_data(data=data)
+            y_true, y_pred, unbiased_prediction_args = self.get_unbiased_predictions_on_training_data(data=data)
 
             output_data = {}
 
@@ -120,7 +120,7 @@ class IrisModel:
             output_data["model_definition"] = "model_definition.json"
 
             # save scores.json
-            scores, out_args = self.get_scores(data=data, predicted_values=y_pred, data_args=data_args)
+            scores, out_args = self.get_scores(data=data, true_values=y_true, predicted_values=y_pred, data_args=data_args)
             path = os.path.join(output_files_dir, "scores.json")
             self.save_json_file(dict_to_save=scores, path=path)
             output_data["scores"] = "scores.json"
@@ -270,7 +270,7 @@ class IrisModel:
         """
         This method provides unbiased predictions for all our training samples.
         We accomplish that by performing a nested cross validation:
-        We leave a hold out set out, and we past the rest of the data to the 
+        We leave a hold out set out, and we pass the rest of the data to the 
         find_best_parameters_and_get_fitted_model method, which contains a cross validation itself. 
         Then we make predictions on the hold out set with the resulted predictor. This way, we found
         the best hyperparameters without using the hold out data. We repeat this process leaving out 
@@ -300,7 +300,7 @@ class IrisModel:
         # make unbiased predictions using nested CV
         # We will use this unbiased predictions in order to calculate the performance of the
         # algorithm using multiple scores.
-        cv = StratifiedKFold(y, n_folds=5)
+        cv = StratifiedKFold(y, n_folds=10, shuffle=True)
         for i, (train, test) in enumerate(cv):
             
             data_fold = {}
@@ -317,7 +317,7 @@ class IrisModel:
                 y_true = np.hstack((y_true, y[test]))
                 y_pred = np.hstack((y_pred, y_test_pred))
 
-        return y_pred, out_args
+        return y_true, y_pred, out_args
     
     
     def get_model_definition(self, **kwargs):
@@ -466,7 +466,7 @@ class IrisModel:
         """
         
         data = kwargs['data']
-        true_values = np.array(data['targets'])
+        true_values = kwargs['true_values']
         predicted_values = kwargs['predicted_values']
         le = kwargs["data_args"]["LabelEncoder"]
 
