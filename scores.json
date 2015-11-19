@@ -1,1 +1,60 @@
-{"schema_version": "0.02", "scores": [{"name": "Accuracy", "value": 0.95333333333333337}, {"summary_value": 0.95332866619995338, "name": "F1 score", "summary_name": "Weighted average F1 score", "class_wise": {"values": [1.0, 0.92929292929292928, 0.93069306930693074], "names": ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]}}, {"summary_value": 0.95344804588502063, "name": "Precision", "summary_name": "Weighted average precision score", "class_wise": {"values": [1.0, 0.93877551020408168, 0.92156862745098034], "names": ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]}}, {"summary_value": 0.95333333333333337, "name": "Recall", "summary_name": "Weighted average recall score", "class_wise": {"values": [1.0, 0.93877551020408168, 0.92156862745098034], "names": ["Iris-setosa", "Iris-versicolor", "Iris-virginica"]}}]}
+{
+  "schema_version": "0.02",
+  "scores": [
+    {
+      "name": "Accuracy",
+      "value": 0.95333333333333337
+    },
+    {
+      "summary_value": 0.95332866619995338,
+      "name": "F1 score",
+      "summary_name": "Weighted average F1 score",
+      "class_wise": {
+        "values": [
+          1.0,
+          0.92929292929292928,
+          0.93069306930693074
+        ],
+        "names": [
+          "Iris-setosa",
+          "Iris-versicolor",
+          "Iris-virginica"
+        ]
+      }
+    },
+    {
+      "summary_value": 0.95344804588502063,
+      "name": "Precision",
+      "summary_name": "Weighted average precision score",
+      "class_wise": {
+        "values": [
+          1.0,
+          0.93877551020408168,
+          0.92156862745098034
+        ],
+        "names": [
+          "Iris-setosa",
+          "Iris-versicolor",
+          "Iris-virginica"
+        ]
+      }
+    },
+    {
+      "summary_value": 0.95333333333333337,
+      "name": "Recall",
+      "summary_name": "Weighted average recall score",
+      "class_wise": {
+        "values": [
+          1.0,
+          0.93877551020408168,
+          0.92156862745098034
+        ],
+        "names": [
+          "Iris-setosa",
+          "Iris-versicolor",
+          "Iris-virginica"
+        ]
+      }
+    }
+  ]
+}
